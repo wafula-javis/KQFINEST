@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>KQ Travel | Kenya trips built around you</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAF9F6;--surf:#fff;--ink:#1A1A22;--mut:#5B5B68;--line:#E4E2DC;--night:#1C1B3A;--amber:#F4A31B;--teal:#0E7C7B;--on-amber:#1A1A22;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12121C;--surf:#1B1B2A;--ink:#F2F1EC;--mut:#A9A8B6;--line:#2C2C3F;--teal:#3DBDBB}}
+:root[data-theme="dark"]{--bg:#12121C;--surf:#1B1B2A;--ink:#F2F1EC;--mut:#A9A8B6;--line:#2C2C3F;--teal:#3DBDBB}
+html{scroll-behavior:smooth;scroll-padding-top:90px;height:auto}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 Figtree,system-ui,sans-serif}
+h1,h2,h3{font-family:'Bricolage Grotesque',Georgia,serif;line-height:1.1;margin:0}
+h2{font-size:clamp(1.8rem,4vw,2.6rem);letter-spacing:-.02em}
+a{color:inherit}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+.wrap{max-width:1180px;margin:auto;padding:0 20px}
+section{padding:72px 0}
+.sub{color:var(--mut);max-width:60ch;margin:10px 0 28px}
+.btn{background:var(--amber);color:var(--on-amber);border:0;border-radius:999px;padding:12px 22px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-block}
+.btn:hover{filter:brightness(1.06)}
+.btn.ghost{background:transparent;border:1.5px solid currentColor}
+/* header */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--night);color:#fff}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--night);z-index:31}
+.nav{display:flex;align-items:center;gap:18px;height:68px}
+.logo{font:800 1.6rem 'Bricolage Grotesque';letter-spacing:-.03em;text-decoration:none}
+.logo span{color:var(--amber)}
+.nav nav{display:flex;gap:18px;margin-left:12px}
+.nav nav a{text-decoration:none;opacity:.85;font-weight:500}.nav nav a:hover{opacity:1}
+.sp{flex:1}
+.seg{display:inline-flex;border:1px solid #ffffff44;border-radius:999px;overflow:hidden}
+.seg button{background:none;border:0;color:#fff;padding:6px 12px;cursor:pointer;font-size:.85rem}
+.seg button[aria-pressed="true"]{background:#fff;color:var(--night);font-weight:600}
+/* hero */
+.hero{position:relative;background:linear-gradient(180deg,#1C1B3A 0%,#5B2A6B 38%,#E8663D 72%,#F4A31B 100%);color:#fff;padding:90px 0 0;overflow:hidden;min-height:620px}
+.hero h1{font-size:clamp(2.4rem,7vw,5rem);letter-spacing:-.03em;max-width:15ch}
+.hero p{max-width:50ch;font-size:1.15rem;opacity:.92;margin:16px 0 28px}
+.sun{position:absolute;right:12%;bottom:120px;width:200px;height:200px;border-radius:50%;background:#FFD27A;box-shadow:0 0 120px 40px #FFB84D88;animation:rise 2.4s ease-out both}
+@keyframes rise{from{transform:translateY(90px);opacity:0}to{transform:none;opacity:1}}
+.land{position:absolute;left:0;right:0;bottom:0;width:100%;height:150px}
+.hero .wrap{position:relative;z-index:2;padding-bottom:210px}
+.search{position:absolute;left:50%;bottom:30px;transform:translateX(-50%);width:min(1100px,calc(100% - 28px));z-index:5;background:var(--surf);color:var(--ink);border-radius:20px;padding:14px;display:grid;grid-template-columns:repeat(4,1fr) auto;gap:10px;box-shadow:0 20px 50px #0006}
+.search label{display:flex;flex-direction:column;font-size:.75rem;color:var(--mut);padding:6px 10px;border-radius:12px;border:1px solid var(--line)}
+.search input,.search select{border:0;background:none;font-size:1rem;color:var(--ink);padding:2px 0;outline-offset:4px;width:100%}
+/* destinations */
+.dests{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.dest{position:relative;aspect-ratio:4/5;border-radius:16px;overflow:hidden;border:0;color:#fff;text-align:left;padding:16px;cursor:pointer;display:flex;flex-direction:column;justify-content:flex-end;transition:transform .3s}
+.dest::before{content:"";position:absolute;inset:0;background:var(--g);transition:transform .5s}
+.dest::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 40%,#000a)}
+.dest:hover::before{transform:scale(1.1)}
+.dest *{position:relative;z-index:2}
+.dest b{font:700 1.25rem 'Bricolage Grotesque'}
+.dest small{opacity:0;transform:translateY(8px);transition:.3s}
+.dest:hover small,.dest:focus-visible small{opacity:1;transform:none}
+/* tours */
+.chips{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:22px}
+.chip{border:1.5px solid var(--line);background:var(--surf);border-radius:999px;padding:7px 16px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--night);color:#fff;border-color:var(--night)}
+.chips select{border:1.5px solid var(--line);background:var(--surf);border-radius:999px;padding:7px 12px}
+.count{margin-left:auto;color:var(--mut)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.card{background:var(--surf);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.ph{height:170px;position:relative;background:var(--g);display:flex;align-items:flex-end;padding:12px;color:#ffffffcc;font:800 1.5rem 'Bricolage Grotesque'}
+.tag{position:absolute;top:12px;left:12px;background:#fff;color:var(--night);font-size:.75rem;font-weight:600;padding:3px 10px;border-radius:999px}
+.heart{position:absolute;top:10px;right:10px;width:36px;height:36px;border-radius:50%;border:0;background:#fffd;cursor:pointer;font-size:1.1rem}
+.heart[aria-pressed="true"]{background:#E4572E;color:#fff}
+.cb{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.cb h3{font-size:1.15rem}
+.meta{color:var(--mut);font-size:.9rem}
+.row{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:10px}
+.price b{font-size:1.2rem}
+.small{padding:8px 16px;font-size:.9rem}
+.empty{grid-column:1/-1;padding:40px;border:1.5px dashed var(--line);border-radius:16px;text-align:center;color:var(--mut)}
+/* map */
+.mapbox{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
+.mapbox svg{width:100%;max-height:520px}
+.land-k{fill:var(--line);stroke:var(--mut);stroke-width:1.5}
+.sea{fill:#0E7C7B22}
+.pin{cursor:pointer}.pin circle{fill:var(--amber);stroke:var(--night);stroke-width:2;transition:r .2s}
+.pin:hover circle,.pin[aria-pressed="true"] circle{r:13;fill:#E4572E}
+.pin text{font:600 11px Figtree;fill:var(--ink)}
+.panel{background:var(--surf);border:1px solid var(--line);border-radius:18px;padding:26px}
+.panel dl{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;margin:16px 0}
+.panel dt{color:var(--mut)}.panel dd{margin:0;font-weight:500}
+/* quiz */
+.quiz{background:var(--night);color:#fff}
+.qbox{max-width:720px;margin:auto;background:#ffffff12;border-radius:20px;padding:30px}
+.qopts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-top:18px}
+.qopts button{background:#ffffff18;border:1.5px solid #ffffff33;color:#fff;border-radius:14px;padding:14px;cursor:pointer;text-align:left}
+.qopts button:hover{background:var(--amber);color:var(--on-amber)}
+.bar{height:6px;background:#ffffff22;border-radius:9px;margin-bottom:20px}.bar i{display:block;height:100%;background:var(--amber);border-radius:9px;transition:width .4s}
+.res{display:grid;gap:10px;margin-top:14px}
+.res .card{color:var(--ink);flex-direction:row;align-items:center;padding:12px 16px;justify-content:space-between}
+/* stats + reviews */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:36px}
+.stat{border-top:3px solid var(--amber);padding-top:10px}.stat b{font:800 2.4rem 'Bricolage Grotesque';display:block}
+.rev{columns:3 280px;column-gap:18px}
+.rev figure{break-inside:avoid;margin:0 0 18px;background:var(--surf);border:1px solid var(--line);border-radius:16px;padding:20px}
+.rev blockquote{margin:8px 0 12px}.rev figcaption{color:var(--mut);font-size:.9rem}
+.stars{color:var(--amber);letter-spacing:2px}
+.why{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:34px}
+.why div{padding:18px;border-radius:14px;background:var(--surf);border:1px solid var(--line)}
+.why svg{width:30px;height:30px;stroke:var(--teal);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.why h3{font-size:1.05rem;margin:8px 0 4px}.why p{margin:0;color:var(--mut);font-size:.92rem}
+/* faq, quote */
+details{border-bottom:1px solid var(--line);padding:16px 0}
+summary{cursor:pointer;font-weight:600;font-size:1.05rem}
+details p{color:var(--mut);margin:8px 0 0}
+.qgrid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+form label{display:flex;flex-direction:column;font-size:.85rem;color:var(--mut);gap:4px}
+form .full{grid-column:1/-1}
+form input,form select,form textarea{border:1.5px solid var(--line);background:var(--surf);border-radius:12px;padding:11px 12px;color:var(--ink)}
+.ok{display:none;background:var(--teal);color:#fff;padding:14px;border-radius:12px;grid-column:1/-1}
+footer{background:var(--night);color:#ffffffcc;padding:50px 0 100px}
+footer .wrap{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px}
+footer h3{color:#fff;font-size:1rem;margin-bottom:8px}
+footer a{display:block;text-decoration:none;margin:4px 0}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.badges span{border:1px solid #ffffff44;border-radius:8px;padding:4px 10px;font-size:.8rem}
+.wa{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:40;background:#25D366;color:#073B1C;font-weight:600;border-radius:999px;padding:13px 18px;text-decoration:none;box-shadow:0 8px 24px #0004;transition:padding .3s}
+.wa.min span{display:none}
+/* modal */
+dialog{border:0;border-radius:20px;padding:0;max-width:560px;width:calc(100% - 28px);background:var(--surf);color:var(--ink)}
+dialog::backdrop{background:#000a}
+.mh{height:150px}.mb{padding:22px}
+.tl{list-style:none;padding:0;margin:14px 0;border-left:2px solid var(--teal)}
+.tl li{padding:0 0 10px 16px;position:relative}.tl li::before{content:"";position:absolute;left:-6px;top:8px;width:10px;height:10px;border-radius:50%;background:var(--amber)}
+.step{display:inline-flex;align-items:center;gap:10px;border:1.5px solid var(--line);border-radius:999px;padding:4px 8px}
+.step button{width:30px;height:30px;border-radius:50%;border:0;background:var(--night);color:#fff;cursor:pointer}
+@media(max-width:900px){.dests,.stats,.why{grid-template-columns:repeat(2,1fr)}.mapbox,.qgrid{grid-template-columns:1fr}.search{grid-template-columns:1fr 1fr;position:relative;left:0;transform:none;margin:0 auto 20px;bottom:auto}.hero .wrap{padding-bottom:30px}.sun{width:120px;height:120px;bottom:160px}footer .wrap{grid-template-columns:1fr 1fr}.nav nav{display:none}form{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style></head>
+<body>
+<header><div class="wrap nav">
+<a class="logo" href="#top">KQ<span>.</span></a>
+<nav aria-label="Main"><a href="#destinations">Destinations</a><a href="#tours">Tours</a><a href="#map">Map</a><a href="#reviews">Reviews</a><a href="#faq">FAQ</a></nav>
+<span class="sp"></span>
+<div class="seg" role="group" aria-label="Pricing"><button data-res="res" aria-pressed="false">Kenyan resident</button><button data-res="non" aria-pressed="true">Visitor</button></div>
+<div class="seg" role="group" aria-label="Currency"><button data-cur="KES" aria-pressed="false">KES</button><button data-cur="USD" aria-pressed="true">USD</button></div>
+<a class="btn" href="#quote">Plan my trip</a>
+</div></header>
+
+<main id="top">
+<div class="hero"><div class="sun"></div>
+<div class="wrap"><h1>Kenya, planned around you.</h1><p>Private safaris, mountain treks and coast escapes. Tell us your dates and budget and we'll build your quote within one business day.</p></div>
+<svg class="land" viewBox="0 0 1200 150" preserveAspectRatio="none" aria-hidden="true"><path d="M0 150V95Q200 60 380 100T760 90T1200 80V150Z" fill="#2A1840"/><path d="M0 150V120Q300 95 600 125T1200 110V150Z" fill="#12121C"/><g fill="#12121C"><rect x="880" y="62" width="5" height="60"/><path d="M830 66Q860 48 885 62Q915 46 945 68Q915 58 885 70Q855 56 830 66Z"/></g></svg>
+<form class="search" id="sf" role="search" aria-label="Find a tour">
+<label>Where<select id="sDest"><option value="all">Anywhere in Kenya</option></select></label>
+<label>From<input type="date" id="sDate"></label>
+<label>Travelers<input type="number" id="sTrav" min="1" max="20" value="2"></label>
+<label>Budget per person (USD)<select id="sBud"><option value="9999">Any budget</option><option value="200">Up to $200</option><option value="500">Up to $500</option><option value="700">Up to $700</option></select></label>
+<button class="btn" type="submit">Search tours</button></form></div>
+
+<section id="destinations"><div class="wrap"><h2>Choose where to wake up</h2><p class="sub">Tap a destination to see its trips. Hover to see how many are available.</p><div class="dests" id="dests"></div></div></section>
+
+<section id="tours" style="background:var(--surf)"><div class="wrap"><h2>Trips you can book now</h2><p class="sub">Prices update for your residency and currency choice in the header. Sample trips and prices for layout purposes.</p>
+<div class="chips" id="chips" role="group" aria-label="Filter by activity"></div>
+<div class="chips"><select id="fDur" aria-label="Duration"><option value="9">Any length</option><option value="1">Day trips</option><option value="3">Up to 3 days</option></select><select id="fSort" aria-label="Sort"><option value="rec">Recommended</option><option value="lo">Price: low to high</option><option value="hi">Price: high to low</option></select><label><input type="checkbox" id="fSaved"> Saved only</label><span class="count" id="count" aria-live="polite"></span></div>
+<div class="grid" id="grid"></div></div></section>
+
+<section id="map"><div class="wrap"><h2>Explore Kenya on the map</h2><p class="sub">Pick a pin to see the best months, trip count and cheapest price.</p>
+<div class="mapbox"><svg viewBox="0 0 300 360" role="group" aria-label="Map of Kenya"><rect class="sea" x="226" y="170" width="74" height="190" rx="14"/><path class="land-k" d="M70 30L128 14L168 60L210 100L226 130L240 168L232 205L214 240L196 262L180 300L140 300L110 254L92 200L58 150L70 100Z"/><g id="pins"></g></svg>
+<div class="panel" id="panel"></div></div></div></section>
+
+<section class="quiz" id="quiz"><div class="wrap"><h2 style="text-align:center">Not sure where to go?</h2><p class="sub" style="margin:10px auto 26px;text-align:center">Answer 3 quick questions for trips that fit.</p><div class="qbox" id="qbox"></div></div></section>
+
+<section id="reviews"><div class="wrap"><h2>Travelers on KQ trips</h2><p class="sub">Sample reviews for layout purposes. Replace with real traveler feedback.</p>
+<div class="stats"><div class="stat"><b data-n="2400">0</b>travelers hosted</div><div class="stat"><b data-n="85">0</b>trips to choose from</div><div class="stat"><b data-n="12">0</b>destinations</div><div class="stat"><b data-n="49" data-d="1">0</b>average rating out of 5</div></div>
+<div class="rev"><figure><div class="stars" aria-label="5 stars">★★★★★</div><blockquote>Our guide spotted a leopard before we left camp. Booking over WhatsApp took ten minutes.</blockquote><figcaption>Amina, Nairobi. Maasai Mara Classic</figcaption></figure>
+<figure><div class="stars" aria-label="5 stars">★★★★★</div><blockquote>Clear pricing, no surprises, and the resident rate made a weekend in Amboseli affordable.</blockquote><figcaption>Brian, Nakuru. Amboseli Elephants</figcaption></figure>
+<figure><div class="stars" aria-label="4 stars">★★★★☆</div><blockquote>Mt Kenya was hard and worth it. Pack warmer than you think.</blockquote><figcaption>Lena, Berlin. Sirimon Trek</figcaption></figure></div>
+<div class="why"><div><svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg><h3>Licensed and insured</h3><p>Registered with the Tourism Regulatory Authority.</p></div><div><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><h3>Quote in one business day</h3><p>Real people reply, not a bot.</p></div><div><svg viewBox="0 0 24 24"><path d="M3 7h18v10H3z"/><circle cx="12" cy="12" r="2.5"/></svg><h3>M-Pesa and cards</h3><p>Pay a deposit, settle the rest later.</p></div><div><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg><h3>Support during your trip</h3><p>Reach us by WhatsApp or phone, day or night.</p></div></div></div></section>
+
+<section id="faq" style="background:var(--surf)"><div class="wrap qgrid"><div><h2>Before you book</h2><p class="sub">Quick answers to common questions.</p></div><div>
+<details><summary>When is the best time to visit the Maasai Mara?</summary><p>July to October for the wildebeest crossings, though wildlife is good all year.</p></details>
+<details><summary>What is the resident rate?</summary><p>Kenyan citizens and residents pay lower park and lodge rates. Use the toggle in the header and bring your ID.</p></details>
+<details><summary>How do I pay?</summary><p>M-Pesa, card, or bank transfer. A deposit confirms your booking.</p></details>
+<details><summary>Can I change my dates?</summary><p>Yes, free up to 14 days before departure. Terms will be confirmed in your quote.</p></details></div></div></section>
+
+<section id="quote"><div class="wrap qgrid"><div><h2>Get a custom quote</h2><p class="sub">Share your dates, group size and budget. We reply within one business day.</p><p>Nairobi, Kenya<br>WhatsApp: +254 700 000 000<br>hello@kq.example</p></div>
+<form id="qf"><label>Full name<input required id="qName"></label><label>Email<input type="email" required></label><label>Phone / WhatsApp<input type="tel"></label><label>Trip of interest<select id="qTrip"><option>Not sure yet</option></select></label><label>Travel date<input type="date"></label><label>Travelers<input type="number" min="1" value="2"></label><label class="full">Anything we should know?<textarea rows="3"></textarea></label><button class="btn full" type="submit">Send my request</button><div class="ok" id="ok" role="status"></div></form></div></section>
+</main>
+
+<footer><div class="wrap"><div><h3>KQ Travel</h3><p>Trips across Kenya, planned around you.</p><div class="badges"><span>TRA licence no. (add)</span><span>M-Pesa</span><span>Visa</span><span>Mastercard</span></div></div>
+<div><h3>Company</h3><a href="#">About us</a><a href="#">Careers</a><a href="#">Blog</a></div><div><h3>Support</h3><a href="#quote">Contact</a><a href="#">Privacy policy</a><a href="#">Terms</a></div><div><h3>Follow</h3><a href="#">Instagram</a><a href="#">Facebook</a><a href="#">X</a></div></div></footer>
+<a class="wa" id="wa" href="https://wa.me/254700000000" target="_blank" rel="noopener">💬 <span>Chat on WhatsApp</span></a>
+
+<dialog id="dlg"><div id="dbody"></div></dialog>
+
+<script>
+const R={mara:["Maasai Mara","linear-gradient(135deg,#C9822B,#6B3A1E)","Jul to Oct","Wildebeest crossings"],amboseli:["Amboseli","linear-gradient(135deg,#7FA6C9,#3B5B7A)","Jun to Oct","Elephants under Kilimanjaro"],tsavo:["Tsavo","linear-gradient(135deg,#B5533C,#5A2A22)","Jun to Mar","Red elephants, vast plains"],nakuru:["Nakuru and Naivasha","linear-gradient(135deg,#C97FA6,#6B3A5B)","Year round","Flamingos, cycling, gorges"],mtkenya:["Mt Kenya","linear-gradient(135deg,#5B8F6B,#1F3B2A)","Jan to Mar","Alpine trekking"],diani:["Diani Beach","linear-gradient(135deg,#2FB8B0,#0E5E63)","Dec to Mar","White sand, reef"],lamu:["Lamu","linear-gradient(135deg,#E0A458,#8A4B2A)","Nov to Mar","Dhows, old stone town"],nairobi:["Nairobi","linear-gradient(135deg,#8E7CC3,#3D2F6B)","Year round","City, giraffes, paragliding"]};
+const P={mara:[95,225],amboseli:[150,200],tsavo:[185,250],nakuru:[110,180],mtkenya:[140,170],diani:[225,285],lamu:[250,200],nairobi:[130,225]};
+const T=[
+[1,"Maasai Mara Classic Safari","mara","Safari",3,540,"Depart Nairobi, game drive at dusk|Full day game drives, picnic lunch|Sunrise drive, return to Nairobi"],
+[2,"Amboseli Elephants and Kilimanjaro Views","amboseli","Safari",3,430,"Drive to Amboseli, afternoon game drive|Sunrise on Kilimanjaro, Maasai village visit|Morning drive, return"],
+[3,"Tsavo East and West Explorer","tsavo","Safari",4,520,"Drive to Tsavo East|Game drives and Mudanda Rock|Mzima Springs in Tsavo West|Return to Nairobi"],
+[4,"Lake Nakuru Day Trip","nakuru","Safari",1,120,"Leave Nairobi at 6am|Flamingos and rhino drive|Back by evening"],
+[5,"Mt Kenya Sirimon Trek","mtkenya","Hiking",4,610,"Sirimon gate to Old Moses camp|Shipton's camp acclimatisation|Summit push to Point Lenana|Descend Chogoria"],
+[6,"Hell's Gate Cycling and Gorge Walk","nakuru","Adventure",1,95,"Cycle through Hell's Gate|Walk the gorge|Return"],
+[7,"Diani Beach Escape","diani","Beach",4,480,"Fly or train to Mombasa, beach arrival|Snorkelling at Kisite|Free beach day|Return"],
+[8,"Lamu Dhow and Old Town","lamu","Culture",3,450,"Fly to Lamu, old town walk|Sunset dhow cruise|Shela beach, return"],
+[9,"Paragliding Over the Rift Valley","nairobi","Adventure",1,110,"Brief and kit up|Tandem flight|Lunch and return"],
+[10,"Nairobi City and Giraffe Centre","nairobi","Culture",1,75,"Giraffe Centre and elephant orphanage|Karen Blixen and lunch|Nairobi National Museum"]];
+const ACT=["All","Safari","Adventure","Beach","Hiking","Culture"];
+let st={cur:"USD",res:"non",act:"All",dest:"all",bud:9999,saved:new Set()};
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const USD_KES=129,RES=.55;
+const price=t=>{let p=t[5]*(st.res==="res"?RES:1);return st.cur==="KES"?"KES "+Math.round(p*USD_KES/100)*100:"$"+Math.round(p)};
+const raw=t=>t[5]*(st.res==="res"?RES:1);
+// dest tiles, selects, pins
+Object.entries(R).forEach(([k,v])=>{
+ const n=T.filter(t=>t[2]===k).length;
+ $("#dests").insertAdjacentHTML("beforeend",`<button class="dest" style="--g:${v[1]}" data-d="${k}"><b>${v[0]}</b><small>${n} trip${n>1?"s":""} · ${v[3]}</small></button>`);
+ $("#sDest").insertAdjacentHTML("beforeend",`<option value="${k}">${v[0]}</option>`);
+ $("#pins").insertAdjacentHTML("beforeend",`<g class="pin" tabindex="0" role="button" aria-pressed="false" aria-label="${v[0]}" data-d="${k}"><circle cx="${P[k][0]}" cy="${P[k][1]}" r="9"/><text x="${P[k][0]+14}" y="${P[k][1]+4}">${v[0].split(" ")[0]}</text></g>`);
+});
+T.forEach(t=>$("#qTrip").insertAdjacentHTML("beforeend",`<option>${t[1]}</option>`));
+$("#chips").innerHTML=ACT.map(a=>`<button class="chip" aria-pressed="${a==="All"}" data-a="${a}">${a}</button>`).join("");
+// render tours
+function render(){
+ const dur=+$("#fDur").value,so=$("#fSort").value,sv=$("#fSaved").checked;
+ let L=T.filter(t=>(st.act==="All"||t[3]===st.act)&&(st.dest==="all"||t[2]===st.dest)&&t[4]<=dur&&(raw(t)<=st.bud)&&(!sv||st.saved.has(t[0])));
+ if(so==="lo")L.sort((a,b)=>a[5]-b[5]);if(so==="hi")L.sort((a,b)=>b[5]-a[5]);
+ $("#count").textContent=L.length+" trip"+(L.length===1?"":"s")+" found";
+ $("#grid").innerHTML=L.length?L.map(t=>`<article class="card"><div class="ph" style="--g:${R[t[2]][1]}">${R[t[2]][0]}<span class="tag">${t[3]}</span><button class="heart" data-h="${t[0]}" aria-pressed="${st.saved.has(t[0])}" aria-label="Save ${t[1]}">♥</button></div><div class="cb"><h3>${t[1]}</h3><div class="meta">${t[4]} day${t[4]>1?"s":""} · Best ${R[t[2]][2]}</div><div class="row"><div class="price"><span class="meta">from</span> <b>${price(t)}</b></div><button class="btn small" data-q="${t[0]}">Quick view</button></div></div></article>`).join(""):`<div class="empty">No trips match these filters. Try a different activity or budget, or <a href="#quote">ask us for a custom trip</a>.</div>`;
+}
+$("#chips").onclick=e=>{const b=e.target.closest("[data-a]");if(!b)return;st.act=b.dataset.a;$$("#chips .chip").forEach(c=>c.setAttribute("aria-pressed",c===b));render()};
+["#fDur","#fSort","#fSaved"].forEach(s=>$(s).onchange=render);
+$("#grid").onclick=e=>{const h=e.target.closest("[data-h]"),q=e.target.closest("[data-q]");
+ if(h){const i=+h.dataset.h;st.saved.has(i)?st.saved.delete(i):st.saved.add(i);render()}
+ if(q)openT(+q.dataset.q)};
+// header toggles
+$$("[data-cur]").forEach(b=>b.onclick=()=>{st.cur=b.dataset.cur;$$("[data-cur]").forEach(x=>x.setAttribute("aria-pressed",x===b));render()});
+$$("[data-res]").forEach(b=>b.onclick=()=>{st.res=b.dataset.res;$$("[data-res]").forEach(x=>x.setAttribute("aria-pressed",x===b));render()});
+// destination → filter
+function goDest(k){st.dest=k;$("#sDest").value=k;render();$("#tours").scrollIntoView()}
+$("#dests").onclick=e=>{const b=e.target.closest("[data-d]");if(b)goDest(b.dataset.d)};
+$("#sf").onsubmit=e=>{e.preventDefault();st.dest=$("#sDest").value;st.bud=+$("#sBud").value;render();$("#tours").scrollIntoView()};
+// map
+function pin(k){$$(".pin").forEach(p=>p.setAttribute("aria-pressed",p.dataset.d===k));const v=R[k],L=T.filter(t=>t[2]===k),min=Math.min(...L.map(raw));
+ $("#panel").innerHTML=`<h3 style="font-size:1.6rem">${v[0]}</h3><p class="meta">${v[3]}</p><dl><dt>Best months</dt><dd>${v[2]}</dd><dt>Trips</dt><dd>${L.length}</dd><dt>From</dt><dd>${price([0,0,0,0,0,min/(st.res==="res"?RES:1)])}</dd></dl><button class="btn" data-go="${k}">See ${v[0]} trips</button>`}
+$("#pins").onclick=e=>{const p=e.target.closest(".pin");if(p)pin(p.dataset.d)};
+$("#pins").onkeydown=e=>{if(e.key==="Enter"||e.key===" "){const p=e.target.closest(".pin");if(p){e.preventDefault();pin(p.dataset.d)}}};
+$("#panel").onclick=e=>{const b=e.target.closest("[data-go]");if(b)goDest(b.dataset.go)};
+// modal
+function openT(id){const t=T.find(x=>x[0]===id);let n=+$("#sTrav").value||2;
+ const draw=()=>{$("#dbody").innerHTML=`<div class="ph mh" style="--g:${R[t[2]][1]}">${R[t[2]][0]}</div><div class="mb"><h3 style="font-size:1.5rem">${t[1]}</h3><p class="meta">${t[4]} day${t[4]>1?"s":""} · ${t[3]} · Best ${R[t[2]][2]}</p><ul class="tl">${t[6].split("|").map((s,i)=>`<li><b>Day ${i+1}</b> ${s}</li>`).join("")}</ul><div class="row" style="margin:0 0 14px"><span class="step"><button data-s="-1" aria-label="Fewer travelers">−</button><b>${n}</b> travelers<button data-s="1" aria-label="More travelers">+</button></span><div class="price"><span class="meta">Estimated total</span><br><b>${(()=>{const p=raw(t)*n;return st.cur==="KES"?"KES "+Math.round(p*USD_KES/100)*100:"$"+Math.round(p)})()}</b></div></div><div style="display:flex;gap:10px"><button class="btn" data-req="${t[1]}">Request this trip</button><button class="btn ghost" data-x>Close</button></div></div>`};
+ draw();$("#dlg").showModal();
+ $("#dbody").onclick=e=>{const s=e.target.closest("[data-s]"),r=e.target.closest("[data-req]");
+  if(s){n=Math.min(20,Math.max(1,n+ +s.dataset.s));draw()}
+  if(e.target.closest("[data-x]"))$("#dlg").close();
+  if(r){$("#dlg").close();$("#qTrip").value=r.dataset.req;$("#quote").scrollIntoView()}}}
+$("#dlg").onclick=e=>{if(e.target===$("#dlg"))$("#dlg").close()};
+// quiz
+const Q=[["What sounds best?",[["Wildlife","Safari"],["Adrenaline","Adventure"],["Beach","Beach"],["Culture","Culture"],["Hiking","Hiking"]]],["How long do you have?",[["One day",1],["2 to 3 days",3],["4 or more",9]]],["Budget per person?",[["Under $200",200],["Under $500",500],["Flexible",9999]]]];
+let qa=[],qi=0;
+function quiz(){const b=$("#qbox");if(qi<3){b.innerHTML=`<div class="bar"><i style="width:${qi/3*100}%"></i></div><h3>${Q[qi][0]}</h3><div class="qopts">${Q[qi][1].map((o,i)=>`<button data-o="${i}">${o[0]}</button>`).join("")}</div>`;return}
+ const sc=T.map(t=>{let s=0;if(t[3]===qa[0])s+=3;const d=qa[1];if(d===1?t[4]===1:d===3?t[4]>=2&&t[4]<=3:t[4]>=4)s+=2;if(raw(t)<=qa[2])s+=2;return[s,t]}).sort((a,b)=>b[0]-a[0]).slice(0,3);
+ b.innerHTML=`<div class="bar"><i style="width:100%"></i></div><h3>Your top matches</h3><div class="res">${sc.map(([s,t])=>`<div class="card"><div><b>${t[1]}</b><div class="meta">${t[4]} day${t[4]>1?"s":""} · from ${price(t)}</div></div><button class="btn small" data-q="${t[0]}">View</button></div>`).join("")}</div><p><button class="btn ghost" data-re>Start again</button></p>`}
+$("#qbox").onclick=e=>{const o=e.target.closest("[data-o]"),q=e.target.closest("[data-q]");
+ if(o){qa.push(Q[qi][1][+o.dataset.o][1]);qi++;quiz()}
+ if(q)openT(+q.dataset.q);if(e.target.closest("[data-re]")){qa=[];qi=0;quiz()}};
+// quote form
+$("#qf").onsubmit=e=>{e.preventDefault();const o=$("#ok");o.style.display="block";o.textContent="Thanks "+$("#qName").value.split(" ")[0]+". We'll reply within one business day. (Demo form: nothing was sent.)";e.target.reset()};
+// counters
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(!en.isIntersecting)return;io.unobserve(en.target);const el=en.target,n=+el.dataset.n,d=el.dataset.d;let i=0;const f=()=>{i=Math.min(1,i+.04);const v=n*i;el.textContent=d?(v/10).toFixed(1):Math.round(v).toLocaleString();if(i<1)requestAnimationFrame(f)};f()}));
+$$("[data-n]").forEach(e=>io.observe(e));
+// whatsapp collapse
+addEventListener("scroll",()=>$("#wa").classList.toggle("min",scrollY>600),{passive:true});
+render();pin("mara");quiz();
+</script></body></html>
